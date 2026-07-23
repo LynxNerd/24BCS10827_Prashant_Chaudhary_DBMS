@@ -1,0 +1,6 @@
+-- Write your PostgreSQL query statement below
+
+Select p.name, b.bonus From Employee as p
+Left Join Bonus as b
+on p.empId = b.empId
+Where b.bonus<1000 or b.bonus is NULL;
