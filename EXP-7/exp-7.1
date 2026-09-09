@@ -1,0 +1,41 @@
+CREATE TABLE Staff (
+    Staff_ID NUMBER PRIMARY KEY,
+    Staff_Name VARCHAR2(100),
+    Salary NUMBER(10,2)
+);
+
+INSERT INTO Staff VALUES (101, 'Prashant', 50000);
+INSERT INTO Staff VALUES (102, 'Akhil', 75000);
+INSERT INTO Staff VALUES (103, 'Krish', 60000);
+INSERT INTO Staff VALUES (104, 'Tejaswi', 90000);
+INSERT INTO Staff VALUES (105, 'Balraj', 45000);
+INSERT INTO Staff VALUES (106, 'Vasu', 85000);
+INSERT INTO Staff VALUES (107, 'Aparneet', 70000);
+INSERT INTO Staff VALUES (108, 'Janish', 95000);
+
+SELECT *from Staff
+
+DECLARE 
+CURSOR c_top5 IS SELECT Staff_Name, Salary
+From Staff
+ORDER BY salary DESC
+FETCH FIRST 5 ROWS ONLY;
+
+v_name   Staff.staff_name%TYPE;
+v_salary Staff.salary%TYPE;
+
+BEGIN 
+    OPEN c_top5;
+    LOOP
+        FETCH c_top5 INTO v_name, v_salary;
+        EXIT WHEN c_top5%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE('Name: '||v_name|| ', Salary: '||v_salary);
+    END LOOP;
+    CLOSE c_top5;
+END;
+
+
+
+
+
+
